@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="col-sm-8">
+        <h2>Создание матрицы</h2>
+        <form method="post">
+            {% csrf_token %}
+            <h3>Введите значения матрицы через пробел</h3>
+            {{ form.as_p }}
+            <button class="active" type="submit">Создать</button>
+        </form>
+    </div>
+{% endblock content %}

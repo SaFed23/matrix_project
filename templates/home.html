@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-sm-1">
+        <div class="card"><a href="{% url 'create' %}">Add</a></div>
+        {% for matrix in object_list %}
+            <div class="card"><a href="{% url 'detail' matrix.pk %}">Matrix {{ matrix.id }}</a></div>
+        {% endfor %}
+    </div>
+
+
+    <div class="col-sm-8">
+      <div class="jumbotron">
+        <h1>Операции с матрицами</h1>
+          <br>
+        <p>Наш сайт для выполнения основных операций матричной арифметики.</p>
+        <p>К основным операциям матричной арифметики можно отнести:<br>
+            транспонирование, нахождение определителя, нахождение ранга, нахождение определителей минорных матриц,
+            приведение к треугольной матрице, нахождение корней системы линейных уравнений,
+            нахождение суммы элементов матрицы и среднего значения.</p>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        <div class="col-xs-6 col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        <div class="col-xs-6 col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        <div class="col-xs-6 col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        <div class="col-xs-6 col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        <div class="col-xs-6 col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+    </div>
+{% endblock %}

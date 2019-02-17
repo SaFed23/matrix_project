@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-sm-8">
+        <div class="jumbotron">
+            <h2>Определитель матриц</h2>
+            <br>
+            <p>Определитель матрицы или детерминант матрицы - это одна из основных численных
+                характеристик квадратной матрицы, применяемая при решении многих задач</p>
+        </div>
+    {% for matrix in object_list %}
+        <h3>Определитель матрицы {{ matrix.id }}: {{ matrix.determinate }}</h3>
+    {% endfor %}
+    </div>
+{% endblock content %}
+
