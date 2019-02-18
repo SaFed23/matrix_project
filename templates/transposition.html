@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-sm-1">
+        <div class="card"><a href="{% url 'create' %}">Add</a></div>
+        {% for matrix in object_list %}
+            <div class="card">
+                <a href="{% url 'detail' matrix.pk %}">Matrix {{ matrix.id }}</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-8">
+        <div class="jumbotron">
+            <h2>Транспонирование матриц</h2>
+            <br>
+            <p>Транспонированная матрица - матрица, полученная из
+                исходной матрицы заменой строк на столбцы</p>
+        </div>
+    {% for matrix in object_list %}
+        <h3>Транспонированная матрица {{ matrix.id }}:</h3>
+        {% for line in matrix.transposition %}
+            <p>{{ line }}</p>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    </div>
+{% endblock content %}
+

@@ -56,14 +56,14 @@
           <div class="col-sm-3 sidebar-offcanvas" id="sidebar">
               <div class="list-group">
                 <a class="list-group-item active">Возможные операции</a>
-                <a href="#" class="list-group-item">Корни системы линейных уравнений</a>
+                <a href="{% url 'root_system' %}" class="list-group-item">Корни системы линейных уравнений</a>
                 <a href="{% url 'determinate' %}" class="list-group-item">Определитель</a>
                 <a href="#" class="list-group-item">Определитель минорных матриц</a>
-                <a href="#" class="list-group-item">Приведение к треугольной матрице</a>
-                <a href="#" class="list-group-item">Ранг матрицы</a>
+                <a href="{% url 'triangular_matrix' %}" class="list-group-item">Приведение к треугольной матрице</a>
+                <a href="{% url 'matrix_rank' %}" class="list-group-item">Ранг матрицы</a>
                 <a href="{% url 'mean_element' %}" class="list-group-item">Среднее значение</a>
                 <a href="{% url 'sum_elements' %}" class="list-group-item">Сумма элементов матрицы</a>
-                <a href="#" class="list-group-item">Транспонирование</a>
+                <a href="{% url 'transposition' %}" class="list-group-item">Транспонирование</a>
               </div>
           </div>
 

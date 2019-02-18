@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-sm-1">
+        <div class="card"><a href="{% url 'create' %}">Add</a></div>
+        {% for matrix in object_list %}
+            <div class="card">
+                <a href="{% url 'detail' matrix.pk %}">Matrix {{ matrix.id }}</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-8">
+        <div class="jumbotron">
+            <h2>Корни системы линейных уравнений</h2>
+            <br>
+            <p>Система уравнений, каждое уравнение в которой является линейным -
+                алгебраическим уравнением первой степени</p>
+        </div>
+    {% for matrix in object_list %}
+        <h3>Корни системы линейных уравнений {{ matrix.id }}:</h3>
+        {% for root, anwer in matrix.root_system %}
+            <p>{{ root }} = {{ anwer }} </p>
+        {% endfor %}
+        
+    {% endfor %}
+    </div>
+{% endblock content %}
+

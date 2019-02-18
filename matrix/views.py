@@ -50,6 +50,27 @@ class SumElementsMatrixView(ListView):
     model = Matrix
     template_name = 'sum_elements.html'
 
+
 class MeanElementMatrixView(ListView):
     model = Matrix
     template_name = 'mean_element.html'
+
+
+class TranspositionMatrixView(ListView):
+    model = Matrix
+    template_name = 'transposition.html'
+
+
+class MatrixRankView(ListView):
+    model = Matrix
+    template_name = 'matrix_rank.html'
+
+
+class TriangularMatrixView(ListView):
+    model = Matrix
+    template_name = 'triangular_matrix_bottom.html'
+
+
+class RootSystemView(ListView):
+    model = Matrix
+    template_name = 'root_system.html'

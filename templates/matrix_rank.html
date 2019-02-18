@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-sm-1">
+        <div class="card"><a href="{% url 'create' %}">Add</a></div>
+        {% for matrix in object_list %}
+            <div class="card">
+                <a href="{% url 'detail' matrix.pk %}">Matrix {{ matrix.id }}</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-8">
+        <div class="jumbotron">
+            <h2>Ранг матрицы</h2>
+            <br>
+            <p>Ранг матрицы - наивысший из порядков всевозможных ненулевых миноров этой матрицы.</p>
+        </div>
+    {% for matrix in object_list %}
+        <h3>Ранг матрицы {{ matrix.id }}: {{ matrix.matrix_rank }}</h3>
+    {% endfor %}
+    </div>
+{% endblock content %}
+

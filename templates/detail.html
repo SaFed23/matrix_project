@@ -2,12 +2,14 @@
 
 
 {% block content %}
-    <div class="col-sm-8">
-        <h2>Матрица {{ object.id }}</h2>
+    <div class="col-sm-9">
+        <h2>Матрица {{ object.id }}:</h2>
+        {% for line in object.show_matrix %}
+            <p>{{ line }}</p>
+        {% endfor %}
         <h3>Размер матрицы: </h3>
         <p>Количество строк {{ object.rows }}</p>
         <p>Количество столбцов {{ object.columns }}</p>
-        <p>Элементы матрицы: {{ object.values }}</p>
         <button class="btn btn-success">
             <a href="{% url 'update' object.id %}" style="color: white">
                 Изменить

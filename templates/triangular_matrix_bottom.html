@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-sm-1">
+        <div class="card"><a href="{% url 'create' %}">Add</a></div>
+        {% for matrix in object_list %}
+            <div class="card">
+                <a href="{% url 'detail' matrix.pk %}">Matrix {{ matrix.id }}</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-8">
+        <div class="jumbotron">
+            <h2>Треугольная матрица</h2>
+            <br>
+            <p>Нижней треугольной матрицей называется матрица,
+                все элементы которой выше главной диагонали равны нулю.
+                Верхней треугольной матрицей называется матрица,
+                все элементы которой ниже главной диагонали равны нулю</p>
+        </div>
+        {% for matrix in object_list %}
+            <h3  style="text-align: center">Треугольная матрица {{ matrix.id }}:</h3>
+            <div class="col-sm-6">
+                <h4>Нижняя треугольная матрица</h4>
+                {% for line in matrix.triangular_matrix_bottom %}
+                    <p>{{ line }}</p>
+                {% endfor %}
+            </div>
+            <div class="col-sm-6">
+                <h4>Верхняя треугольная матрица</h4>
+                {% for line in matrix.triangular_matrix_top %}
+                    <p>{{ line }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+
