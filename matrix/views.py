@@ -49,3 +49,7 @@ class DeterminateView(ListView):
 class SumElementsMatrixView(ListView):
     model = Matrix
     template_name = 'sum_elements.html'
+
+class MeanElementMatrixView(ListView):
+    model = Matrix
+    template_name = 'mean_element.html'

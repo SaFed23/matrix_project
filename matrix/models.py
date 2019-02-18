@@ -26,7 +26,9 @@ class Matrix(models.Model):
         return np.around(np.linalg.det(array))
 
     def sum_elements(self):
-        array = np.array(make_array(self.values))
-        return np.sum(array)
+        return np.sum(np.array(make_array(self.values)))
+
+    def mean_element(self):
+        return np.mean(np.array(make_array(self.values)))
 
 

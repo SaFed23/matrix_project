@@ -8,6 +8,7 @@ from .views import (
     MatrixDeleteView,
     DeterminateView,
     SumElementsMatrixView,
+    MeanElementMatrixView,
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path('matrix/<int:pk>/delete', MatrixDeleteView.as_view(), name='delete'),
     path('determinate/', DeterminateView.as_view(), name='determinate'),
     path('sum_elements/', SumElementsMatrixView.as_view(), name='sum_elements'),
+    path('mean_element/', MeanElementMatrixView.as_view(), name='mean_element'),
 ]
