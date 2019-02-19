@@ -18,6 +18,10 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 
+class HowWorkingView(TemplateView):
+    template_name = 'how_working.html'
+
+
 class MatrixCreateView(CreateView):
     model = Matrix
     template_name = 'create.html'
@@ -74,3 +78,8 @@ class TriangularMatrixView(ListView):
 class RootSystemView(ListView):
     model = Matrix
     template_name = 'root_system.html'
+
+
+class DetMinorMatrixView(ListView):
+    model = Matrix
+    template_name = 'det_minor_matrix.html'

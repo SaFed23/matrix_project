@@ -18,10 +18,15 @@
                 алгебраическим уравнением первой степени</p>
         </div>
     {% for matrix in object_list %}
-        <h3>Корни системы линейных уравнений {{ matrix.id }}:</h3>
-        {% for root, anwer in matrix.root_system %}
-            <p>{{ root }} = {{ anwer }} </p>
-        {% endfor %}
+        <h4>Корни системы линейных уравнений {{ matrix.id }}:</h4>
+        {% if matrix.rows == matrix.columns %}
+            {% for root, anwer in matrix.root_system %}
+                <p>{{ root }} = {{ anwer }} </p>
+            {% endfor %}
+        {% else %}
+            <p>{{ matrix.root_system }}</p>
+        {% endif %}
+
         
     {% endfor %}
     </div>

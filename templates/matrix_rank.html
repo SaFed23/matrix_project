@@ -17,7 +17,7 @@
             <p>Ранг матрицы - наивысший из порядков всевозможных ненулевых миноров этой матрицы.</p>
         </div>
     {% for matrix in object_list %}
-        <h3>Ранг матрицы {{ matrix.id }}: {{ matrix.matrix_rank }}</h3>
+        <h4>Ранг матрицы {{ matrix.id }}: {{ matrix.matrix_rank }}</h4>
     {% endfor %}
     </div>
 {% endblock content %}

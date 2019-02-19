@@ -18,7 +18,7 @@
                 исходной матрицы заменой строк на столбцы</p>
         </div>
     {% for matrix in object_list %}
-        <h3>Транспонированная матрица {{ matrix.id }}:</h3>
+        <h4>Транспонированная матрица {{ matrix.id }}:</h4>
         {% for line in matrix.transposition %}
             <p>{{ line }}</p>
         {% endfor %}

@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     HomePageView,
     AboutView,
+    HowWorkingView,
     MatrixCreateView,
     MatrixDetailView,
     MatrixUpdateView,
@@ -13,11 +14,13 @@ from .views import (
     MatrixRankView,
     TriangularMatrixView,
     RootSystemView,
+    DetMinorMatrixView,
 )
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('about/', AboutView.as_view(), name='about'),
+    path('how_working/', HowWorkingView.as_view(), name='how_working'),
     path('create/', MatrixCreateView.as_view(), name='create'),
     path('matrix/<int:pk>/detail', MatrixDetailView.as_view(), name='detail'),
     path('matrix/<int:pk>/update', MatrixUpdateView.as_view(), name='update'),
@@ -29,4 +32,5 @@ urlpatterns = [
     path('matrix_rank/', MatrixRankView.as_view(), name='matrix_rank'),
     path('triangular_matrix/', TriangularMatrixView.as_view(), name='triangular_matrix'),
     path('root_system/', RootSystemView.as_view(), name='root_system'),
+    path('det_minor_matrix/', DetMinorMatrixView.as_view(), name='det_minor_matrix'),
 ]
