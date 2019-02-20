@@ -23,15 +23,31 @@
             <h3  style="text-align: center">Треугольная матрица {{ matrix.id }}:</h3>
             <div class="col-sm-6">
                 <h4>Нижняя треугольная матрица</h4>
-                {% for line in matrix.triangular_matrix_bottom %}
-                    <p>{{ line }}</p>
-                {% endfor %}
+                <table style="width: 20%; height: 100%; text-align: center">
+                    <tbody>
+                        {% for line in matrix.triangular_matrix_bottom %}
+                            <tr>
+                                {% for element in line %}
+                                    <td>{{ element }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
             <div class="col-sm-6">
                 <h4>Верхняя треугольная матрица</h4>
-                {% for line in matrix.triangular_matrix_top %}
-                    <p>{{ line }}</p>
-                {% endfor %}
+                <table style="width: 20%; height: 100%; text-align: center">
+                    <tbody>
+                        {% for line in matrix.triangular_matrix_top %}
+                            <tr>
+                                {% for element in line %}
+                                    <td>{{ element }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         {% endfor %}
     </div>

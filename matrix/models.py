@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 import numpy as np
+import pandas as pd
 
 
 def make_array(string):
@@ -30,7 +31,7 @@ class Matrix(models.Model):
 
     def matrix(self):
         array = make_array(self.values)
-        return show_matrix(array)
+        return array
 
     def determinate(self):
         if self.rows == self.columns:
@@ -48,18 +49,18 @@ class Matrix(models.Model):
 
     def transposition(self):
         array = np.transpose(np.array(make_array(self.values)))
-        return show_matrix(array)
+        return array
 
     def matrix_rank(self):
         return np.linalg.matrix_rank(np.array(make_array(self.values)))
 
     def triangular_matrix_bottom(self):
         array = np.tril(np.array(make_array(self.values)), k=0)
-        return show_matrix(array)
+        return array
 
     def triangular_matrix_top(self):
         array = np.triu(np.array(make_array(self.values)), k=0)
-        return show_matrix(array)
+        return array
 
     def root_system(self):
         if self.rows == self.columns:
@@ -90,4 +91,7 @@ class Matrix(models.Model):
         else:
             return "Ошибка. Матрица не квадратная"
 
-
+    def write_in_csv_file(self):
+        df = pd.DataFrame(self.matrix())
+        df.to_csv("matrix" + str(self.id) + ".csv")
+        return reverse("detail", args=[str(self.id)])

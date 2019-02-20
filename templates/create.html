@@ -8,7 +8,10 @@
             {% csrf_token %}
             <h3>Введите значения матрицы через пробел</h3>
             {{ form.as_p }}
-            <button class="active" type="submit">Создать</button>
+            <button class="btn btn-success" type="submit">Создать</button>
+            <button class="btn btn-primary" type="button">
+                <a style="color: white; text-decoration: none" href="#">Загрузить из файла</a>
+            </button>
         </form>
     </div>
 {% endblock content %}
