@@ -4,14 +4,13 @@
 {% block content %}
 <div class="col-sm-9">
         <h2>Создание матрицы</h2>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <h3>Введите значения матрицы через пробел</h3>
             {{ form.as_p }}
-            <button class="btn btn-success" type="submit">Создать</button>
-            <button class="btn btn-primary" type="button">
-                <a style="color: white; text-decoration: none" href="{% url 'create_with_file' %}">
-                    Загрузить из файла
+            <button class="btn btn-success" type="submit">
+                <a href="{{ matrix.read_csv_file }}" style="color: white; text-decoration: none">
+                    Создать
                 </a>
             </button>
         </form>

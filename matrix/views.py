@@ -83,3 +83,10 @@ class RootSystemView(ListView):
 class DetMinorMatrixView(ListView):
     model = Matrix
     template_name = 'det_minor_matrix.html'
+
+
+class WriteMatrixInFileView(DetailView):
+    model = Matrix
+    template_name = 'for_work/add_file.html'
+
+

@@ -18,9 +18,10 @@
                 элементы которой стоят в матрице на пересечении строк
                 с номерами и столбцов с номерами. </p>
         </div>
-    {% for matrix in object_list %}
+    {% for matrix in object_list %} 
         <h4>Миноры матрицы {{ matrix.id }}: {{ matrix.det_minor_matrix }}</h4>
     {% endfor %}
+    <br><br>
     </div>
 {% endblock content %}
 
