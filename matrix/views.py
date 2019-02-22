@@ -1,3 +1,5 @@
+import pandas as pd
+import numpy as np
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -5,8 +7,9 @@ from django.views.generic import (
     DetailView,
     UpdateView,
     DeleteView)
-from .models import Matrix
+from .models import Matrix, show_matrix
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
 
 class HomePageView(ListView):
@@ -25,7 +28,7 @@ class HowWorkingView(TemplateView):
 class MatrixCreateView(CreateView):
     model = Matrix
     template_name = 'create.html'
-    fields = ['rows', 'columns', 'values']
+    fields = ['name', 'rows', 'columns', 'values']
 
 
 class MatrixDetailView(DetailView):
@@ -90,3 +93,36 @@ class WriteMatrixInFileView(DetailView):
     template_name = 'for_work/add_file.html'
 
 
+class CreateWithFileView(CreateView):
+    model = Matrix
+    template_name = 'for_work/create_with_file.html'
+    fields = ['name', 'file']
+    success_url = "home"
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        file = form.cleaned_data['file']
+        df = pd.read_csv(file)
+        array = []
+        bof_array = []
+        for el in df.columns.values:
+            bof_array.append(int(el))
+        array.append(bof_array)
+        for row in df.values:
+            bof_array = []
+            for column in row:
+                bof_array.append(int(column))
+            array.append(bof_array)
+        rows = len(array)
+        columns = len(bof_array)
+        array = show_matrix(array)
+        array_string = ""
+        for row in array:
+            array_string += row + "\n"
+        self.model.objects.create(
+            name=name,
+            rows=rows,
+            columns=columns,
+            values=array_string,
+        )
+        return HttpResponseRedirect("/")

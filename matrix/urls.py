@@ -16,6 +16,7 @@ from .views import (
     RootSystemView,
     DetMinorMatrixView,
     WriteMatrixInFileView,
+    CreateWithFileView,
 )
 
 urlpatterns = [
@@ -35,4 +36,5 @@ urlpatterns = [
     path('root_system/', RootSystemView.as_view(), name='root_system'),
     path('det_minor_matrix/', DetMinorMatrixView.as_view(), name='det_minor_matrix'),
     path('matrix/<int:pk>/in_file/', WriteMatrixInFileView.as_view(), name='in_file'),
+    path('matrix/create_with_file', CreateWithFileView.as_view(), name='with_file'),
 ]

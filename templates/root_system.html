@@ -19,7 +19,7 @@
         </div>
     {% for matrix in object_list %}
         <h4>Корни системы линейных уравнений {{ matrix.id }}:</h4>
-        {% if matrix.rows == matrix.columns %}
+        {% if matrix.rows == matrix.columns and matrix.determinate %}
             {% for root, anwer in matrix.root_system %}
                 <p>{{ root }} = {{ anwer }} </p>
             {% endfor %}

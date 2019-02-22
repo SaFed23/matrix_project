@@ -19,13 +19,17 @@ def show_matrix(array):
 
 
 class Matrix(models.Model):
+    name = models.CharField(max_length=25, default="Matrix")
     rows = models.PositiveIntegerField(default=0)
     columns = models.PositiveIntegerField(default=0)
     values = models.TextField()
     file = models.FileField()
 
     def __str__(self):
-        return str(self.id)
+        if self.name == 'Matrix':
+            return self.name + str(self.id)
+        else:
+            return self.name
 
     def get_absolute_url(self):
         return reverse("detail", args=[str(self.id)])
@@ -38,7 +42,7 @@ class Matrix(models.Model):
         if self.rows == self.columns:
             array = np.array(make_array(self.values))
             array.shape = (int(self.rows), int(self.columns))
-            return np.around(np.linalg.det(array))
+            return np.around(np.linalg.det(array), decimals=2)
         else:
             return "Ошибка. Матрица не квадратная. Невозможно найти определитель!"
 
@@ -94,15 +98,18 @@ class Matrix(models.Model):
         return reverse("detail", args=[str(self.id)])
 
     def root_system(self):
-        if self.rows == self.columns:
-            answer = np.zeros(self.rows)
-            array_x = []
-            for x in range(self.rows):
-                array_x.append('x' + str(x + 1))
-            roots = list(zip(array_x, np.linalg.solve(np.array(make_array(self.values)), answer)))
-            return roots
+        if self.determinate():
+            if self.rows == self.columns:
+                answer = np.zeros(self.rows)
+                array_x = []
+                for x in range(self.rows):
+                    array_x.append('x' + str(x + 1))
+                roots = list(zip(array_x, np.linalg.solve(np.array(make_array(self.values)), answer)))
+                return roots
+            else:
+                return "Ошибка. Матрица не квадратная. Один из аргументов равен бесконечности!"
         else:
-            return "Ошибка. Матрица не квадратная. Один из аргументов равен бесконечности!"
+            return "Сингулярная матрица. Определитель равен 0!"
 
     def root_in_file(self):
         with open("text.txt", "w+") as file:
@@ -135,4 +142,7 @@ class Matrix(models.Model):
     def write_in_csv_file(self):
         df = pd.DataFrame(self.matrix())
         df.to_csv("matrix" + str(self.id) + ".csv", header=None, index=None)
+        return reverse("detail", args=[str(self.id)])
+
+    def create_with_file(self):
         return reverse("detail", args=[str(self.id)])
