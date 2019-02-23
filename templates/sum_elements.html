@@ -3,19 +3,21 @@
 {% block content %}
     <div class="col-sm-1">
         <div class="card"><a href="{% url 'create' %}">Add</a></div>
+        <hr/>
         {% for matrix in object_list %}
-            <div class="card">
-                <a href="{% url 'detail' matrix.pk %}">Matrix {{ matrix.id }}</a>
-            </div>
+            <div class="card"><a href="{% url 'detail' matrix.pk %}">{{ matrix.name }}</a></div>
+            <hr/>
         {% endfor %}
     </div>
+
     <div class="col-sm-8">
     <div class="jumbotron">
         <h2>Сумма чисел матрицы</h2>
         <br>
     </div>
     {% for matrix in object_list %}
-        <h4>Сумма чисел в матрице {{ matrix.id }}: {{ matrix.sum_elements }}</h4>
+        <h4>Сумма чисел в матрице {{ matrix.name }}: {{ matrix.sum_elements }}</h4>
+        <hr/>
     {% endfor %}
     </div>
 {% endblock content %}

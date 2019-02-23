@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="col-sm-9">
-        <h2>Матрица {{ object.id }}:</h2>
+        <h2>{{ object.name }}</h2>
         <table style="width: 20%; height: 100%; text-align: center">
             <tbody>
                 {% for line in object.matrix %}

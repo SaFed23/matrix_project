@@ -3,10 +3,10 @@
 {% block content %}
     <div class="col-sm-1">
         <div class="card"><a href="{% url 'create' %}">Add</a></div>
+        <hr/>
         {% for matrix in object_list %}
-            <div class="card">
-                <a href="{% url 'detail' matrix.pk %}">Matrix {{ matrix.id }}</a>
-            </div>
+            <div class="card"><a href="{% url 'detail' matrix.pk %}">{{ matrix.name }}</a></div>
+            <hr/>
         {% endfor %}
     </div>
 
@@ -19,7 +19,8 @@
                 с номерами и столбцов с номерами. </p>
         </div>
     {% for matrix in object_list %} 
-        <h4>Миноры матрицы {{ matrix.id }}: {{ matrix.det_minor_matrix }}</h4>
+        <h4>Миноры матрицы {{ matrix.name }}: {{ matrix.det_minor_matrix }}</h4>
+        <hr/>
     {% endfor %}
     <br><br>
     </div>

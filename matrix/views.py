@@ -75,7 +75,7 @@ class MatrixRankView(ListView):
 
 class TriangularMatrixView(ListView):
     model = Matrix
-    template_name = 'triangular_matrix_bottom.html'
+    template_name = 'triangular_matrix.html'
 
 
 class RootSystemView(ListView):

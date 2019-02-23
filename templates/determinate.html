@@ -3,10 +3,10 @@
 {% block content %}
     <div class="col-sm-1">
         <div class="card"><a href="{% url 'create' %}">Add</a></div>
+        <hr/>
         {% for matrix in object_list %}
-            <div class="card">
-                <a href="{% url 'detail' matrix.pk %}">Matrix {{ matrix.id }}</a>
-            </div>
+            <div class="card"><a href="{% url 'detail' matrix.pk %}">{{ matrix.name }}</a></div>
+            <hr/>
         {% endfor %}
     </div>
 
@@ -18,7 +18,8 @@
                 характеристик квадратной матрицы, применяемая при решении многих задач</p>
         </div>
     {% for matrix in object_list %}
-        <h4>Определитель матрицы {{ matrix.id }}: {{ matrix.determinate }}</h4>
+        <h4>Определитель матрицы {{ matrix.name }}: {{ matrix.determinate }}</h4>
+        <hr/>
     {% endfor %}
     </div>
 {% endblock content %}

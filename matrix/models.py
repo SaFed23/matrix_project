@@ -19,17 +19,18 @@ def show_matrix(array):
 
 
 class Matrix(models.Model):
-    name = models.CharField(max_length=25, default="Matrix")
+
+    def return_id(self):
+        return str(self.id)
+
+    name = models.CharField(max_length=25, default="New matrix")
     rows = models.PositiveIntegerField(default=0)
     columns = models.PositiveIntegerField(default=0)
     values = models.TextField()
     file = models.FileField()
 
     def __str__(self):
-        if self.name == 'Matrix':
-            return self.name + str(self.id)
-        else:
-            return self.name
+        return self.name
 
     def get_absolute_url(self):
         return reverse("detail", args=[str(self.id)])
@@ -141,7 +142,7 @@ class Matrix(models.Model):
 
     def write_in_csv_file(self):
         df = pd.DataFrame(self.matrix())
-        df.to_csv("matrix" + str(self.id) + ".csv", header=None, index=None)
+        df.to_csv(self.name + ".csv", header=None, index=None)
         return reverse("detail", args=[str(self.id)])
 
     def create_with_file(self):
