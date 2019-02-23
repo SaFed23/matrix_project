@@ -21,6 +21,11 @@
         <h4>Определитель матрицы {{ matrix.name }}: {{ matrix.determinate }}</h4>
         <hr/>
     {% endfor %}
+    <button class="btn btn-primary">
+        <a href="{% url 'det_in_file' %}" style="color: white; text-decoration: none">
+            Сохранить в файлы
+        </a>
+    </button>
     </div>
 {% endblock content %}
 

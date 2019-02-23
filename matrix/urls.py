@@ -17,6 +17,14 @@ from .views import (
     DetMinorMatrixView,
     WriteMatrixInFileView,
     CreateWithFileView,
+    DetInFileView,
+    SumInFileView,
+    MeanInFileView,
+    TransInFileView,
+    RankInFileView,
+    TriangularInFileView,
+    RootInFileView,
+    MinorInFileView,
 )
 
 urlpatterns = [
@@ -37,4 +45,12 @@ urlpatterns = [
     path('det_minor_matrix/', DetMinorMatrixView.as_view(), name='det_minor_matrix'),
     path('matrix/<int:pk>/in_file/', WriteMatrixInFileView.as_view(), name='in_file'),
     path('matrix/create_with_file', CreateWithFileView.as_view(), name='with_file'),
+    path('det_in_file/', DetInFileView.as_view(), name='det_in_file'),
+    path('sum_in_file/', SumInFileView.as_view(), name='sum_in_file'),
+    path('mean_in_file/', MeanInFileView.as_view(), name='mean_in_file'),
+    path('trans_in_file/', TransInFileView.as_view(), name='trans_in_file'),
+    path('rank_in_file/', RankInFileView.as_view(), name='rank_in_file'),
+    path('triangular_in_file/', TriangularInFileView.as_view(), name='triangular_in_file'),
+    path('root_in_file', RootInFileView.as_view(), name='root_in_file'),
+    path('minor_in_file', MinorInFileView.as_view(), name='minor_in_file'),
 ]

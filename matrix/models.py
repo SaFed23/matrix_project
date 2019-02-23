@@ -48,24 +48,24 @@ class Matrix(models.Model):
             return "Ошибка. Матрица не квадратная. Невозможно найти определитель!"
 
     def det_in_file(self):
-        with open("text.txt", "w+") as file:
-            file.writelines(self.determinate())
+        with open(self.name + ".txt", "w+") as file:
+            file.write(str(self.determinate()))
         return reverse("detail", args=[str(self.id)])
 
     def sum_elements(self):
         return np.sum(np.array(make_array(self.values)))
 
     def sum_in_file(self):
-        with open("text.txt", "w+") as file:
-            file.writelines(self.sum_elements())
+        with open(self.name + ".txt", "w+") as file:
+            file.writelines(str(self.sum_elements()))
         return reverse("detail", args=[str(self.id)])
 
     def mean_element(self):
         return np.mean(np.array(make_array(self.values)))
 
     def mean_in_file(self):
-        with open("text.txt", "w+") as file:
-            file.writelines(self.mean_element())
+        with open(self.name + ".txt", "w+") as file:
+            file.writelines(str(self.mean_element()))
         return reverse("detail", args=[str(self.id)])
 
     def transposition(self):
@@ -73,16 +73,19 @@ class Matrix(models.Model):
         return array
 
     def trans_in_file(self):
-        with open("text.txt", "w+") as file:
-            file.writelines(self.transposition())
+        array_string = ""
+        for line in show_matrix(self.transposition()):
+            array_string += line + "\n"
+        with open(self.name + ".txt", "w+") as file:
+            file.write(array_string)
         return reverse("detail", args=[str(self.id)])
 
     def matrix_rank(self):
         return np.linalg.matrix_rank(np.array(make_array(self.values)))
 
     def rank_in_file(self):
-        with open("text.txt", "w+") as file:
-            file.writelines(self.matrix_rank())
+        with open(self.name + ".txt", "w+") as file:
+            file.write(str(self.matrix_rank()))
         return reverse("detail", args=[str(self.id)])
 
     def triangular_matrix_bottom(self):
@@ -94,8 +97,14 @@ class Matrix(models.Model):
         return array
 
     def triangular_in_file(self):
-        with open("text.txt", "w+") as file:
-            file.writelines([self.triangular_matrix_bottom(), self.triangular_matrix_top()])
+        array_string = ""
+        for line in show_matrix(self.triangular_matrix_bottom()):
+            array_string += line + "\n"
+        array_string += "\n"
+        for line in show_matrix(self.triangular_matrix_top()):
+            array_string += line + "\n"
+        with open(self.name + ".txt", "w+") as file:
+            file.write(array_string)
         return reverse("detail", args=[str(self.id)])
 
     def root_system(self):
@@ -113,8 +122,17 @@ class Matrix(models.Model):
             return "Сингулярная матрица. Определитель равен 0!"
 
     def root_in_file(self):
-        with open("text.txt", "w+") as file:
-            file.writelines(self.root_system())
+        array_string = ""
+        if self.determinate():
+            if self.rows == self.columns:
+                for line in self.root_system():
+                    array_string += str(line[0]) + " = " + str(line[1]) + "\n"
+            else:
+                array_string = self.root_system()
+        else:
+            array_string = self.root_system()
+        with open(self.name + ".txt", "w+") as file:
+            file.write(array_string)
         return reverse("detail", args=[str(self.id)])
 
     def det_minor_matrix(self):
@@ -136,8 +154,8 @@ class Matrix(models.Model):
             return "Ошибка. Матрица не квадратная"
 
     def minor_in_file(self):
-        with open("matrix" + str(self.id) + ".txt", "w+") as file:
-            file.writelines(self.det_minor_matrix())
+        with open(self.name + ".txt", "w+") as file:
+            file.write(self.det_minor_matrix())
         return reverse("detail", args=[str(self.id)])
 
     def write_in_csv_file(self):

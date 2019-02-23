@@ -126,3 +126,83 @@ class CreateWithFileView(CreateView):
             values=array_string,
         )
         return HttpResponseRedirect("/")
+
+
+class DetInFileView(ListView):
+    model = Matrix
+
+    def get(self, request, *args, **kwargs):
+        all_matrix = self.model.objects.all()
+        for matrix in all_matrix:
+            matrix.det_in_file()
+        return HttpResponseRedirect("/determinate/")
+
+
+class SumInFileView(ListView):
+    model = Matrix
+
+    def get(self, request, *args, **kwargs):
+        all_matrix = self.model.objects.all()
+        for matrix in all_matrix:
+            matrix.sum_in_file()
+        return HttpResponseRedirect('/sum_elements/')
+
+
+class MeanInFileView(ListView):
+    model = Matrix
+
+    def get(self, request, *args, **kwargs):
+        all_matrix = self.model.objects.all()
+        for matrix in all_matrix:
+            matrix.mean_in_file()
+        return HttpResponseRedirect('/mean_element/')
+
+
+class TransInFileView(ListView):
+    model = Matrix
+
+    def get(self, request, *args, **kwargs):
+        all_matrix = self.model.objects.all()
+        for matrix in all_matrix:
+            matrix.trans_in_file()
+        return HttpResponseRedirect('/transposition/')
+
+
+class RankInFileView(ListView):
+    model = Matrix
+
+    def get(self, request, *args, **kwargs):
+        all_matrix = self.model.objects.all()
+        for matrix in all_matrix:
+            matrix.rank_in_file()
+        return HttpResponseRedirect('/matrix_rank/')
+
+
+class TriangularInFileView(ListView):
+    model = Matrix
+
+    def get(self, request, *args, **kwargs):
+        all_matrix = self.model.objects.all()
+        for matrix in all_matrix:
+            matrix.triangular_in_file()
+        return HttpResponseRedirect('/triangular_matrix/')
+
+
+class RootInFileView(ListView):
+    model = Matrix
+
+    def get(self, request, *args, **kwargs):
+        all_matrix = self.model.objects.all()
+        for matrix in all_matrix:
+            matrix.root_in_file()
+        return HttpResponseRedirect('/root_system/')
+
+
+class MinorInFileView(ListView):
+    model = Matrix
+
+    def get(self, request, *args, **kwargs):
+        all_matrix = self.model.objects.all()
+        for matrix in all_matrix:
+            matrix.minor_in_file()
+        return HttpResponseRedirect('/det_minor_matrix/')

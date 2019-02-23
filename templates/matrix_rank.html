@@ -20,6 +20,11 @@
         <h4>Ранг матрицы {{ matrix.name }}: {{ matrix.matrix_rank }}</h4>
         <hr/>
     {% endfor %}
+    <button class="btn btn-primary">
+        <a href="{% url 'rank_in_file' %}" style="color: white; text-decoration: none">
+            Сохранить в файлы
+        </a>
+    </button>
     </div>
 {% endblock content %}
 

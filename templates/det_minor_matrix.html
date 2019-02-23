@@ -22,7 +22,11 @@
         <h4>Миноры матрицы {{ matrix.name }}: {{ matrix.det_minor_matrix }}</h4>
         <hr/>
     {% endfor %}
-    <br><br>
+    <button class="btn btn-primary">
+        <a href="{% url 'minor_in_file' %}" style="color: white; text-decoration: none">
+            Сохранить в файлы
+        </a>
+    </button>
     </div>
 {% endblock content %}
 
