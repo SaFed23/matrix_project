@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -7,7 +6,7 @@ from django.views.generic import (
     DetailView,
     UpdateView,
     DeleteView)
-from .models import Matrix, show_matrix
+from .models import Matrix, show_matrix, make_array
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
@@ -29,6 +28,32 @@ class MatrixCreateView(CreateView):
     model = Matrix
     template_name = 'create.html'
     fields = ['name', 'rows', 'columns', 'values']
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        rows = form.cleaned_data['rows']
+        columns = form.cleaned_data['columns']
+        values = form.cleaned_data['values']
+        try:
+            array = make_array(values)
+        except ValueError:
+            return HttpResponseRedirect('/error_in_type/')
+        for line in array:
+            if len(line) != len(array[0]):
+                return HttpResponseRedirect('/error_not_full/')
+        if rows != len(array) or columns != len(array[0]):
+            return HttpResponseRedirect('/error_in_size/')
+        array = show_matrix(array)
+        array_string = ""
+        for row in array:
+            array_string += row + "\n"
+        matrix = self.model.objects.create(
+            name=name,
+            rows=rows,
+            columns=columns,
+            values=array_string,
+        )
+        return HttpResponseRedirect("/matrix/" + str(matrix.id) + "/detail")
 
 
 class MatrixDetailView(DetailView):
@@ -119,13 +144,13 @@ class CreateWithFileView(CreateView):
         array_string = ""
         for row in array:
             array_string += row + "\n"
-        self.model.objects.create(
+        matrix = self.model.objects.create(
             name=name,
             rows=rows,
             columns=columns,
             values=array_string,
         )
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/matrix/" + str(matrix.id) + "/detail")
 
 
 class DetInFileView(ListView):
@@ -206,3 +231,15 @@ class MinorInFileView(ListView):
         for matrix in all_matrix:
             matrix.minor_in_file()
         return HttpResponseRedirect('/det_minor_matrix/')
+
+
+class ErrorInTypeView(TemplateView):
+    template_name = 'errors/error_in_type.html'
+
+
+class ErrorNotFullView(TemplateView):
+    template_name = 'errors/error_not_full.html'
+
+
+class ErrorInSizeView(TemplateView):
+    template_name = 'errors/error_in_size.html'

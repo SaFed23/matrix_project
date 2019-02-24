@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'matrix.apps.MatrixConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,5 @@ FILE_UPLOAD_HANDLERS = [
     "django.core.files.uploadhandler.MemoryFileUploadHandler",
     "django.core.files.uploadhandler.TemporaryFileUploadHandler",
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

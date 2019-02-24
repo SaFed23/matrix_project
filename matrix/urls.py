@@ -25,6 +25,9 @@ from .views import (
     TriangularInFileView,
     RootInFileView,
     MinorInFileView,
+    ErrorInTypeView,
+    ErrorNotFullView,
+    ErrorInSizeView,
 )
 
 urlpatterns = [
@@ -53,4 +56,7 @@ urlpatterns = [
     path('triangular_in_file/', TriangularInFileView.as_view(), name='triangular_in_file'),
     path('root_in_file', RootInFileView.as_view(), name='root_in_file'),
     path('minor_in_file', MinorInFileView.as_view(), name='minor_in_file'),
+    path('error_in_type/', ErrorInTypeView.as_view(), name='error_in_type'),
+    path('error_not_full/', ErrorNotFullView.as_view(), name='error_not_full'),
+    path('error_in_size/', ErrorInSizeView.as_view(), name='error_in_size'),
 ]

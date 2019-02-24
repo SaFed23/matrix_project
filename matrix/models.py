@@ -20,9 +20,6 @@ def show_matrix(array):
 
 class Matrix(models.Model):
 
-    def return_id(self):
-        return str(self.id)
-
     name = models.CharField(max_length=25, default="New matrix")
     rows = models.PositiveIntegerField(default=0)
     columns = models.PositiveIntegerField(default=0)
