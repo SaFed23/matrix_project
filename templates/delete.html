@@ -2,14 +2,12 @@
 
 {% block content %}
      <div class="col-sm-9">
-        <h1>Удалить</h1>
+        <h1>Удалено</h1>
         <form action="" method="post">
             {% csrf_token %}
-            <p>Вы уверены, что хотите удалить матрицу {{ matrix.name }}?</p>
-            <button class="btn btn-success">
-                <a href="{% url 'home' %}" style="color: white;text-decoration: none" >Вернуться домой</a>
-            </button>
-            <button class="btn btn-danger ml-2" type="submit">Согласен</button>
+            <h3>Вы удалили матрицу {{ matrix.name }}</h3>
+            <br><br>
+            <button class="btn btn-danger ml-2" type="submit">Применить</button>
         </form>
      </div>
 {% endblock content %}
